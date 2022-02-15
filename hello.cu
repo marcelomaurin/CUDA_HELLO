@@ -1,13 +1,16 @@
 #include <stdio.h>
+#include "cuda_runtime.h"
 
 //Kernel
 __global__
 void hello_world(void){
-	printf("hello");
+	printf("hello\n");
 }
 
 
 int main(){
-	hello_world<<<1, 1>>>();
+	printf("Chamando hello!\n");
+	hello_world << <3, 10>> >();
+	cudaDeviceSynchronize();
 	return 0;
 }
